@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: poppins;
+}
+
+a:focus {
+  background: transparent !important;
+  color: currentColor !important;
+}
+
+br {
+  @apply max-[768px]:hidden;
+}
+
+.service-card {
+  @apply max-[1024px]:m-auto max-[1535px]:!w-[90%];
+}
