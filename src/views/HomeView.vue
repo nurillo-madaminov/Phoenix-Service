@@ -32,12 +32,13 @@ function animateText() {
 }
 
 onMounted(() => {
-  animateText(true)
-  alert(window.innerWidth)
+  if (window.innerWidth > 550) {
+    animateText()
+  }
 })
 
 function perViewChanger1() {
-  return innerWidth <= 768 ? 2 : innerWidth <= 1024 ? 3 : 4
+  return innerWidth <= 541 ? 1 : innerWidth <= 768 ? 2 : innerWidth <= 1024 ? 3 : 4
 }
 
 function perViewChanger2() {
@@ -52,22 +53,22 @@ function perViewChanger2() {
     >
       <div class="container z-10 poppins-medium" data-aos="fade-in">
         <div class="row h-screen poppins-regular flex items-center">
-          <div class="max-[768px]:scale-90 max-[550px]:scale-75 col text-white">
+          <div class="col text-white">
             <div class="font-[600] mb-5">
               <h1 class="max-[768px]:text-6xl text-7xl mb-4">
                 Experience the <br />
                 power of
               </h1>
 
-              <div class="h-[70px]  overflow-hidden">
+              <div class="h-[70px] max-[550px]:h-[60px] overflow-hidden">
                 <div ref="pov" class="relative top-0 duration-500 space-y-3 text-[#D84040]">
-                  <h1 class="text-6xl font-[500]">Industry Experts</h1>
-                  <h1 class="text-6xl font-[500]">
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Industry Experts</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">
                     <span class="max-[768px]:hidden">Cost</span> Optimization
                   </h1>
-                  <h1 class="text-6xl font-[500]">Phoenix Service</h1>
-                  <h1 class="text-6xl font-[500]">Business Transformation</h1>
-                  <h1 class="text-6xl font-[500]">Trust & Safety</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Phoenix Service</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Business Transformation</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Trust & Safety</h1>
                 </div>
               </div>
             </div>
@@ -77,11 +78,11 @@ function perViewChanger2() {
               and drive growth.
             </p>
             <p class="text-xl mb-5 font-[500]">All from Phoenix SERVICE One Partner</p>
-            <a
-              href="#"
-              class="btn bg-[#8E1616] border-none text-lg font-normal text-white hover:bg-[#378e6d]"
-              >Contact us</a
+            <button
+              class="btn bg-[#8E1616] border-none text-lg font-normal text-white hover:bg-[#D84040]"
             >
+              Contact us
+            </button>
           </div>
         </div>
       </div>
@@ -178,7 +179,7 @@ function perViewChanger2() {
           <div class="col flex-1 flex justify-center items-center" data-aos="fade-up-left">
             <div>
               <h2 class="text-2xl font-bold mb-5">Without Phoenix</h2>
-              <ul class="list-[circle] text-lg ">
+              <ul class="list-[circle] text-lg">
                 <li>Improved Safety Scores</li>
                 <li>24/7 Expert Support</li>
                 <li>Real-Time Tracking and Monitoring</li>
@@ -200,7 +201,6 @@ function perViewChanger2() {
           :spaceBetween="20"
           :modules="modules"
           :autoplay="{ delay: 2000 }"
-
           :loop="true"
           class="mySwiper mt-10 scale"
         >

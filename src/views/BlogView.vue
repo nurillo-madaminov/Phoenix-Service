@@ -11,5 +11,4 @@ import HeaderPart from '@/components/HeaderPart.vue'
       <p class="text-center text-xl font-semibold text-gray-400">No posts yet</p>
     </div>
   </div>
-  <!--  -->
 </template>

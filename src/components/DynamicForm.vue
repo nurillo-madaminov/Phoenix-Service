@@ -98,52 +98,52 @@ function sendForm() {
     </div>
     <div class="flex-1 flex justify-center">
       <div class="max-w-[500px] space-y-5">
-        <div class="flex gap-5">
-          <div class="space-y-1 flex-1">
+        <div class="flex gap-5 max-[550px]:flex-col">
+          <div class="space-y-1 flex-1 max-[550px]:flex max-[550px]:flex-col">
             <label for="name" class="text-sm"
               >First name <span class="text-light-red">*</span></label
             >
             <input
               type="text"
-              class="input rounded-md input-bordered w-full max-w-xs"
+              class="input rounded-md input-bordered w-full max-w-xs max-[550px]:max-w-full"
               autocomplete="off"
               id="name"
               v-model="name"
             />
           </div>
-          <div class="space-y-1 flex-1">
+          <div class="space-y-1 flex-1 max-[550px]:flex max-[550px]:flex-col">
             <label for="lname" class="text-sm"
               >Last name <span class="text-light-red">*</span></label
             >
             <input
               type="text"
-              class="input rounded-md input-bordered w-full max-w-xs"
+              class="input rounded-md input-bordered w-full max-w-xs max-[550px]:max-w-full"
               autocomplete="off"
               id="lname"
               v-model="lastname"
             />
           </div>
         </div>
-        <div class="flex gap-5">
-          <div class="space-y-1 flex-1">
+        <div class="flex gap-5 max-[550px]:flex-col">
+          <div class="space-y-1 flex-1 max-[550px]:flex max-[550px]:flex-col">
             <label for="email" class="text-sm">Email <span class="text-light-red">*</span></label>
             <input
               type="email"
-              class="input rounded-md input-bordered w-full max-w-xs"
+              class="input rounded-md input-bordered w-full max-w-xs max-[550px]:max-w-full"
               autocomplete="off"
               id="email"
               v-model="email"
               required
             />
           </div>
-          <div class="space-y-1 flex-1">
+          <div class="space-y-1 flex-1 max-[550px]:flex max-[550px]:flex-col">
             <label for="phoneNumber" class="text-sm"
               >Phone number <span class="text-light-red">*</span></label
             >
             <div class="relative">
               <input
                 ref="phoneNumberInput"
-                class="caret-transparent input rounded-md input-bordered w-full max-w-xs"
+                class="caret-transparent input rounded-md input-bordered w-full max-w-xs max-[550px]:max-w-full"
                 @input="inputMask"
                 maxlength="10"
                 id="phoneNumber"

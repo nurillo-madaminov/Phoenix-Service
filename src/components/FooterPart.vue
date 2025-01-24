@@ -44,7 +44,7 @@
       <div class="flex justify-between mt-16 max-[768px]:flex-col max-[768px]:items-center">
         <p class="text-[#ffffff7c]">&copy; 2024 All rights reserved.</p>
 
-        <ul class="flex justify-between gap-3">
+        <ul class="flex justify-between gap-3  max-[500px]:text-sm">
           <li><a href="#" class="text-[#ffffff7c]">Privacy Policy</a></li>
           <li><a href="#" class="text-[#ffffff7c]">Terms of Use</a></li>
           <li><a href="#" class="text-[#ffffff7c]">Return Policy</a></li>

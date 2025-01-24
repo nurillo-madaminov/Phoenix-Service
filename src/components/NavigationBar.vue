@@ -26,6 +26,10 @@ window.onscroll = () => {
     `
   }
 }
+
+let innerWidth = ref(null)
+
+window.onresize = () => innerWidth.value = window.innerWidth
 </script>
 
 <template>
@@ -60,7 +64,7 @@ window.onscroll = () => {
             <li><router-link :to="{ name: 'questions' }">FAQ</router-link></li>
           </ul>
         </div>
-        <a class="btn btn-ghost text-2xl hover:bg-transparent uppercase">Phoenix Service</a>
+        <router-link :to="{name: 'home'}" class="btn btn-ghost text-2xl hover:bg-transparent uppercase">Phoenix Service</router-link>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
@@ -101,8 +105,8 @@ window.onscroll = () => {
           </li>
         </ul>
       </div>
-      <div class="navbar-end">
-        <a href="tel:#" class="btn btn-ghost hover:bg-transparent">+1 216 293 50 50</a>
+      <div class="navbar-end" >
+        <a href="tel:#" class="btn btn-ghost hover:bg-transparent hidden" :class="{ '!flex': innerWidth > 550 }">+1 216 293 50 50</a>
       </div>
     </div>
   </div>
