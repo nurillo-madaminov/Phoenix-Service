@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import { defineProps } from 'vue'
 
 const props = defineProps(['title'])
 
@@ -51,16 +50,16 @@ function sendForm() {
     checkbox.value == true &&
     hasExactly11Digits(number.value.innerText)
   ) {
-    // console.log()
     let templateMessage = `- Name: ${name.value} %0A- Lastname: ${lastname.value} %0A- Email: ${email.value} %0A- Contact: ${number.value.innerText} %0A- Message: ${message.value}`
-    let token = '8151909769:AAGId6MbAbdegDp6Krk9rdldhdRcV2E7F_Q'
-    let chat_id = -1002336973251
-    let url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${templateMessage}`
+    let url = '/api/sendMessage'
 
     if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/.test(email.value)) {
-      let api = new XMLHttpRequest()
-      api.open('GET', url, true)
-      api.send()
+      fetch(url, {
+        method: 'post',
+        body: JSON.stringify({
+          message: templateMessage
+        })
+      })
       name.value = ''
       lastname.value = ''
       email.value = ''
