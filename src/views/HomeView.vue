@@ -33,6 +33,7 @@ function animateText() {
 
 onMounted(() => {
   animateText(true)
+  alert(window.innerWidth)
 })
 
 function perViewChanger1() {
