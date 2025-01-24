@@ -72,7 +72,7 @@ function perViewChanger2() {
                 </div>
               </div>
             </div>
-            <p class="text-xl mb-5">
+            <p class="text-xl mb-5 max-[550px]:text-base">
               Empowering carriers with innovative outsourcing solutions to optimize operations
               <br />
               and drive growth.
