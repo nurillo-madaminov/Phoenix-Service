@@ -51,14 +51,14 @@ function perViewChanger2() {
     >
       <div class="container z-10 poppins-medium" data-aos="fade-in">
         <div class="row h-screen poppins-regular flex items-center">
-          <div class="max-[768px]:scale-90 col text-white">
+          <div class="max-[768px]:scale-90 max-[550px]:scale-75 col text-white">
             <div class="font-[600] mb-5">
               <h1 class="max-[768px]:text-6xl text-7xl mb-4">
                 Experience the <br />
                 power of
               </h1>
 
-              <div class="h-[70px] overflow-hidden">
+              <div class="h-[70px]  overflow-hidden">
                 <div ref="pov" class="relative top-0 duration-500 space-y-3 text-[#D84040]">
                   <h1 class="text-6xl font-[500]">Industry Experts</h1>
                   <h1 class="text-6xl font-[500]">
@@ -177,7 +177,7 @@ function perViewChanger2() {
           <div class="col flex-1 flex justify-center items-center" data-aos="fade-up-left">
             <div>
               <h2 class="text-2xl font-bold mb-5">Without Phoenix</h2>
-              <ul class="list-[circle] text-lg">
+              <ul class="list-[circle] text-lg ">
                 <li>Improved Safety Scores</li>
                 <li>24/7 Expert Support</li>
                 <li>Real-Time Tracking and Monitoring</li>
@@ -199,6 +199,7 @@ function perViewChanger2() {
           :spaceBetween="20"
           :modules="modules"
           :autoplay="{ delay: 2000 }"
+
           :loop="true"
           class="mySwiper mt-10 scale"
         >
