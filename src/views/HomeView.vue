@@ -49,7 +49,7 @@ function perViewChanger2() {
   <div>
     <!-- Hero section -->
     <div
-      class="max-[768px]:!text-center h-screen flex justify-center bg-[url('https://prraelogistics.com/blog/wp-content/uploads/2024/10/66e9c79fa2639c86730e46c9_Top-Trends-Facing-the-Trucking-Industry-in-2025-1920x1080_c.jpg')] bg-cover before:content-[''] before:absolute before:w-full before:h-screen before:bg-gradient-to-tr from-black to-transparent"
+      class="max-[768px]:!text-center h-[100svh] flex justify-center bg-[url('https://prraelogistics.com/blog/wp-content/uploads/2024/10/66e9c79fa2639c86730e46c9_Top-Trends-Facing-the-Trucking-Industry-in-2025-1920x1080_c.jpg')] bg-cover before:content-[''] before:absolute before:w-full before:h-screen before:bg-gradient-to-tr from-black to-transparent"
     >
       <div class="container z-10 poppins-medium" data-aos="fade-in">
         <div class="row h-screen poppins-regular flex items-center">
