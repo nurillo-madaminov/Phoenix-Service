@@ -54,21 +54,21 @@ function perViewChanger2() {
       <div class="container z-10 poppins-medium" data-aos="fade-in">
         <div class="row h-screen poppins-regular flex items-center">
           <div class="col text-white">
-            <div class="font-[600] mb-5">
-              <h1 class="max-[768px]:text-6xl text-7xl mb-4">
+            <div class="font-[600] mb-5 max-[410px]:mb-1">
+              <h1 class="max-[410px]:text-4xl max-[768px]:text-6xl text-7xl mb-4 max-[410px]:mb-1">
                 Experience the <br />
                 power of
               </h1>
 
-              <div class="h-[70px] max-[550px]:h-[60px] overflow-hidden">
+              <div class="h-[70px] max-[550px]:h-[60px] max-[410px]:h-[50px] overflow-hidden">
                 <div ref="pov" class="relative top-0 duration-500 space-y-3 text-[#D84040]">
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Industry Experts</h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Industry Experts</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
                     <span class="max-[768px]:hidden">Cost</span> Optimization
                   </h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Phoenix Service</h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Business Transformation</h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl">Trust & Safety</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Phoenix Service</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Business Transformation</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Trust & Safety</h1>
                 </div>
               </div>
             </div>
@@ -78,11 +78,11 @@ function perViewChanger2() {
               and drive growth.
             </p>
             <p class="text-xl mb-5 font-[500]">All from Phoenix SERVICE One Partner</p>
-            <button
+            <router-link :to="{name: 'about'}"
               class="btn bg-[#8E1616] border-none text-lg font-normal text-white hover:bg-[#D84040]"
             >
-              Contact us
-            </button>
+              About us
+            </router-link>
           </div>
         </div>
       </div>
