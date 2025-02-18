@@ -42,7 +42,7 @@ onMounted(() => {
           <p>{{ filteredPost.publishedAt }}</p>
         </div>
       </div>
-      <p class="mt-5 text-lg text-justify">{{ filteredPost.content }}</p>
+      <p class="mt-5 text-lg text-justify max-w-[1000px] m-auto">{{ filteredPost.content }}</p>
     </div>
   </div>
 </template>

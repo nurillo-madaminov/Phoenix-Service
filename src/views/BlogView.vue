@@ -31,14 +31,13 @@ onMounted(async () => {
         <p class="text-center text-xl font-semibold text-gray-400">No posts yet</p>
       </div>
       <div class="grid grid-cols-3 gap-x-12 gap-y-5">
-        <div
-          class="card bg-base-100 w-full min-h-[250px] shadow-xl border"
-          v-for="post in posts"
-          :key="post.id"
-        >
+        <div class="card bg-base-100 w-full shadow-xl border" v-for="post in posts" :key="post.id">
+          <figure>
+            <img :src="post.image" :alt="post.image" class="h-[300px] w-full" />
+          </figure>
           <div class="card-body">
             <h2 class="card-title">{{ post.title }}</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <p>{{ post.subtitle }}</p>
             <div class="card-actions justify-end">
               <router-link
                 :to="{ name: 'postDetails', params: { id: post.id } }"
