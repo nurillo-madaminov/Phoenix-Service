@@ -29,6 +29,7 @@ window.onscroll = () => {
 
 let innerWidth = ref(null)
 
+window.onload = () => innerWidth.value = window.innerWidth
 window.onresize = () => innerWidth.value = window.innerWidth
 </script>
 
