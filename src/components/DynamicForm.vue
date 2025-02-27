@@ -51,7 +51,7 @@ function sendForm() {
     checkbox.value == true &&
     hasExactly11Digits(number.value.innerText)
   ) {
-    // console.log()
+
     let templateMessage = `- Name: ${name.value} %0A- Lastname: ${lastname.value} %0A- Email: ${email.value} %0A- Contact: ${number.value.innerText} %0A- Message: ${message.value}`
     let token = '8151909769:AAGId6MbAbdegDp6Krk9rdldhdRcV2E7F_Q'
     let chat_id = -1002336973251
