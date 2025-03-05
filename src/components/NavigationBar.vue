@@ -85,6 +85,13 @@ window.onresize = () => innerWidth.value = window.innerWidth
           </li>
           <li>
             <router-link
+              :to="{ name: 'store' }"
+              class="hover:!bg-transparent hover:text-gray-400 duration-[.4s] active:!bg-transparent text-lg"
+              >Store</router-link
+            >
+          </li>
+          <li>
+            <router-link
               :to="{ name: 'about' }"
               class="hover:!bg-transparent hover:text-gray-400 duration-[.4s] active:!bg-transparent text-lg"
               >About</router-link
