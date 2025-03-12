@@ -178,7 +178,7 @@ function perViewChanger2() {
           </div>
           <div class="col flex-1 flex justify-center items-center" data-aos="fade-up-left">
             <div>
-              <h2 class="text-2xl font-bold mb-5">Without Phoenix</h2>
+              <h2 class="text-2xl font-bold mb-5">With Phoenix</h2>
               <ul class="list-[circle] text-lg">
                 <li>Improved Safety Scores</li>
                 <li>24/7 Expert Support</li>

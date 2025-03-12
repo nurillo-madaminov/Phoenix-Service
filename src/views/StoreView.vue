@@ -1,14 +1,26 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import HeaderPart from '@/components/HeaderPart.vue'
+import img from '@/assets/pics/services/image_2024-10-31_16-23-37_RLXauhf.png'
 </script>
 
 <template>
-  <HeaderPart title="Store" />
+  <div
+    :style="{
+      '--bg-image-url': `url(${img})`,
+    }"
+    class="z-10 bg-cover bg-[image:--bg-image-url] bg-[position:left_center] h-[40vh] before:absolute before:-z-10 before:w-full before:h-full before:bg-[rgba(0,0,0,0.6)] relative flex justify-center items-center flex-col text-white"
+  >
+    <div class="text-center">
+      <h1 class="text-4xl font-semibold tracking-wide">Store</h1>
+      <p class="text-xl">
+        <router-link :to="{ name: 'home' }">Home</router-link> / Store
+      </p>
+    </div>
+  </div>
   <div class="flex justify-center py-16">
     <div class="container">
       <div class="grid grid-cols-3 gap-y-10 px-20 place-items-center">
-        <router-link to="#" v-for="a in 4" :key="a">
+        <router-link :to="{ name: 'ProductDetails', params: { id: a } }" v-for="a in 4" :key="a">
           <div class="card bg-base-100 w-96 shadow-sm border relative overflow-hidden">
             <figure>
               <img

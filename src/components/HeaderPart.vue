@@ -5,7 +5,7 @@ let props = defineProps(['title'])
 </script>
 
 <template>
-  <div ref="header" :style="{
+  <div :style="{
     '--bg-image-url': `url(${img})`
   }"
     class="z-10 bg-cover bg-[image:--bg-image-url] bg-[position:left_center] h-[40vh] before:absolute before:-z-10 before:w-full before:h-full before:bg-[rgba(0,0,0,0.6)] relative flex justify-center items-center flex-col text-white">

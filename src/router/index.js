@@ -7,6 +7,7 @@ import FAQ from '@/views/FAQ.vue'
 import BlogView from '@/views/BlogView.vue'
 import PostDetails from '@/views/PostDetails.vue'
 import StoreView from '@/views/StoreView.vue'
+import ProductDetails from '@/views/ProductDetails.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,11 @@ const router = createRouter({
       path: '/store',
       name: 'store',
       component: StoreView,
+    },
+    {
+      path: '/store/:id',
+      name: 'ProductDetails',
+      component: ProductDetails,
     },
     {
       path: '/about',

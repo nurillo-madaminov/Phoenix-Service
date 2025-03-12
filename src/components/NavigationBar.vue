@@ -80,7 +80,7 @@ onUnmounted(() => {
         </ul>
       </div>
       <div class="navbar-end">
-        <a href="tel:#" class="btn btn-ghost hover:bg-transparent hidden md:inline">+1 216 293 50 50</a>
+        <a href="tel:#" class="btn btn-ghost hover:bg-transparent hidden md:flex">+1 216 293 50 50</a>
       </div>
     </div>
   </div>
