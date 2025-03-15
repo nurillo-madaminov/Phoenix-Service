@@ -1,6 +1,17 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import img from '@/assets/pics/services/image_2024-10-31_16-23-37_RLXauhf.png'
+
+import { computed, onMounted } from 'vue'
+import { useProductsStore } from '@/stores/store'
+
+const useProducts = useProductsStore()
+const products = computed(() => useProducts.products)
+const loading = computed(() => useProducts.loading)
+
+onMounted(() => {
+  useProducts.fetchProducts()
+})
 </script>
 
 <template>
@@ -12,15 +23,13 @@ import img from '@/assets/pics/services/image_2024-10-31_16-23-37_RLXauhf.png'
   >
     <div class="text-center">
       <h1 class="text-4xl font-semibold tracking-wide">Store</h1>
-      <p class="text-xl">
-        <router-link :to="{ name: 'home' }">Home</router-link> / Store
-      </p>
+      <p class="text-xl"><router-link :to="{ name: 'home' }">Home</router-link> / Store</p>
     </div>
   </div>
   <div class="flex justify-center py-16">
-    <div class="container">
+    <!-- <div class="container">
       <div class="grid grid-cols-3 gap-y-10 px-20 place-items-center">
-        <router-link :to="{ name: 'ProductDetails', params: { id: a } }" v-for="a in 4" :key="a">
+        <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }" v-for="product in products" :key="product.id">
           <div class="card bg-base-100 w-96 shadow-sm border relative overflow-hidden">
             <figure>
               <img
@@ -31,6 +40,31 @@ import img from '@/assets/pics/services/image_2024-10-31_16-23-37_RLXauhf.png'
             <div class="card-body !text-center absolute w-full bottom-0">
               <h2 class="font-bold text-xl">PT30 ELD Device</h2>
               <p>$159.99</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+    </div> -->
+    <div class="container flex justify-center py-10" v-if="!loading">
+      <span class="loading loading-dots w-20"></span>
+    </div>
+    <div class="container" v-else>
+      <div class="grid grid-cols-3 gap-y-10 px-20 place-items-center">
+        <router-link
+          :to="{ name: 'ProductDetails', params: { id: product.id } }"
+          v-for="product in products"
+          :key="product.id"
+        >
+          <div class="card bg-base-100 w-96 shadow-sm border relative overflow-hidden">
+            <figure>
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/63a38c1293202a2319aea5e2/1671730374768-ATL8O4IM71YWTEY63H1H/1.jpg"
+                alt="PT30"
+              />
+            </figure>
+            <div class="card-body !text-center absolute w-full bottom-0">
+              <h2 class="font-bold text-xl">{{ product.title }}</h2>
+              <p>{{ product.price }}</p>
             </div>
           </div>
         </router-link>

@@ -3,7 +3,7 @@ import 'swiper/swiper-bundle.css'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { stats } from '@/stores/mainStore'
 import { services } from '@/stores/services'
@@ -17,23 +17,34 @@ import img4 from '@/assets/pics/slider-images/8888104111111_1.png'
 
 let modules = [Autoplay]
 
-let pov = ref(null)
+let smth = ref(false)
+let asdf = ref(null)
 let offsetTop = ref(null)
+let intervalId = null
 
 function animateText() {
-  setInterval(() => {
-    offsetTop.value -= 70
-    pov.value.style = `top: ${offsetTop.value}px;`
+  if (smth.value) {
+    intervalId = setInterval(() => {
+      offsetTop.value -= 70
+      asdf.value.style = `top: ${offsetTop.value}px;` //null error chiqyati page o'zgarsa
 
-    if (offsetTop.value == -280) {
-      offsetTop.value = 0
-    }
-  }, 3000)
+      if (offsetTop.value == -280) {
+        offsetTop.value = 0
+      }
+    }, 1000)
+  }
 }
 
 onMounted(() => {
   if (window.innerWidth > 550) {
+    smth.value = true
     animateText()
+  }
+})
+
+onBeforeUnmount(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
   }
 })
 
@@ -61,14 +72,22 @@ function perViewChanger2() {
               </h1>
 
               <div class="h-[70px] max-[550px]:h-[60px] max-[410px]:h-[50px] overflow-hidden">
-                <div ref="pov" class="relative top-0 duration-500 space-y-3 text-[#D84040]">
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Industry Experts</h1>
+                <div ref="asdf" class="relative top-0 duration-500 space-y-3 text-[#D84040]">
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
+                    Industry Experts
+                  </h1>
                   <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
                     <span class="max-[768px]:hidden">Cost</span> Optimization
                   </h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Phoenix Service</h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Business Transformation</h1>
-                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">Trust & Safety</h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
+                    Phoenix Service
+                  </h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
+                    Business Transformation
+                  </h1>
+                  <h1 class="text-6xl font-[500] max-[550px]:!text-5xl max-[410px]:!text-4xl">
+                    Trust & Safety
+                  </h1>
                 </div>
               </div>
             </div>
@@ -78,7 +97,8 @@ function perViewChanger2() {
               and drive growth.
             </p>
             <p class="text-xl mb-5 font-[500]">All from Phoenix SERVICE One Partner</p>
-            <router-link :to="{name: 'about'}"
+            <router-link
+              :to="{ name: 'about' }"
               class="btn bg-[#8E1616] border-none text-lg font-normal text-white hover:bg-[#D84040]"
             >
               About us

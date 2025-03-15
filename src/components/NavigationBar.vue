@@ -11,8 +11,8 @@ onMounted(() => {
   window.addEventListener('scroll', checkScroll);
 })
 
-window.onload = () => innerWidth.value = window.innerWidth
-window.onresize = () => innerWidth.value = window.innerWidth
+// window.onload = () => innerWidth.value = window.innerWidth
+// window.onresize = () => innerWidth.value = window.innerWidth
 
 onUnmounted(() => {
   window.removeEventListener('scroll')
