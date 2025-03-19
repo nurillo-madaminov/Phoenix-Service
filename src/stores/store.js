@@ -1,24 +1,24 @@
-import supabase from '@/supabaseClient'
+// import supabase from '@/supabaseClient'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
     products: [],
-    loading: false
+    loading: false,
   }),
   getters: {
     getProductById: (state) => (id) => {
-      return state.products.find(product => product.id === id);
-    }
+      return state.products.find((product) => product.id === id)
+    },
   },
   actions: {
     async fetchProducts() {
       try {
         this.loading = true
-        const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/products/') ///all good with code 
+        const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/products/') ///all good with code
         this.products = req.data
-        console.log(req.data);
+        console.log(req.data)
         this.loading = false
       } catch (err) {
         console.log('fetch products error : ', err)
@@ -33,24 +33,22 @@ export const usefetchPostsStore = defineStore('posts', {
     error: '',
     loading: false,
   }),
-  getters: {},
+  getters: {
+    getPostById: (state) => (id) => {
+      return state.posts.find((post) => post.id == id)
+    }
+  },
   actions: {
     async fetchPosts() {
       try {
-        const { data, error } = await supabase.from('posts').select()
-        if (error) {
-          console.error('Error fetching data: 1 ', error)
-          this.error = error.message
-        } else {
-          this.posts = data
-          console.log(data)
-          console.log(this.error)
-        }
+        this.loading = true
+        const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/blogs')
+        this.posts = req.data
+        console.log(req.data)
+        this.loading = false
       } catch (err) {
         console.error('Error fetching data: 2 ', err)
         this.error = err
-      } finally {
-        this.loading = true
       }
     },
   },

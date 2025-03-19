@@ -10,7 +10,9 @@ const products = computed(() => useProducts.products)
 const loading = computed(() => useProducts.loading)
 
 onMounted(() => {
-  useProducts.fetchProducts()
+  if (useProducts.products.length == 0) {
+    useProducts.fetchProducts()
+  }
 })
 </script>
 
@@ -55,12 +57,11 @@ onMounted(() => {
           v-for="product in products"
           :key="product.id"
         >
-          <div class="card bg-base-100 w-96 h-[500px] flex justify-center  shadow-sm border relative overflow-hidden">
+          <div
+            class="card bg-base-100 w-96 h-[500px] flex justify-center shadow-sm border relative overflow-hidden"
+          >
             <figure class="rounded-none">
-              <img
-                :src="product.thumbnil"
-                alt="PT30"
-              />
+              <img :src="product.thumbnil" alt="PT30" />
             </figure>
             <div class="card-body !text-center absolute w-full bottom-0">
               <h2 class="font-bold text-xl">{{ product.title }}</h2>

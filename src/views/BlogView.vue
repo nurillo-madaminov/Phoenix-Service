@@ -7,13 +7,11 @@ import { usefetchPostsStore } from '@/stores/store'
 const fetchPosts = usefetchPostsStore()
 
 const posts = computed(() => fetchPosts.posts)
-const loading = computed(() => fetchPosts.loading)
+// const loading = computed(() => fetchPosts.loading)
 
-onMounted(async () => {
-  try {
-    await fetchPosts.fetchPosts()
-  } catch (err) {
-    console.error('Error in component:', err)
+onMounted(() => {
+  if (fetchPosts.posts.length == 0) {
+    fetchPosts.fetchPosts()
   }
 })
 </script>
@@ -22,7 +20,7 @@ onMounted(async () => {
   <HeaderPart title="Blog" />
 
   <div class="flex justify-center py-16">
-    <div class="container flex justify-center py-10" v-if="!loading">
+    <div class="container flex justify-center py-10" v-if="fetchPosts.loading">
       <span class="loading loading-dots w-20"></span>
     </div>
     <div class="container" v-else>
@@ -33,11 +31,11 @@ onMounted(async () => {
       <div class="grid grid-cols-3 gap-x-12 gap-y-5">
         <div class="card bg-base-100 w-full shadow-xl border" v-for="post in posts" :key="post.id">
           <figure>
-            <img :src="post.image" :alt="post.image" class="h-[300px] w-full" />
+            <img :src="post.thumbnail" :alt="post.thumbnail" class="h-[300px] w-full" />
           </figure>
           <div class="card-body">
             <h2 class="card-title">{{ post.title }}</h2>
-            <p>{{ post.subtitle }}</p>
+            <p>{{ post.description }}</p>
             <div class="card-actions justify-end">
               <router-link
                 :to="{ name: 'postDetails', params: { id: post.id } }"
