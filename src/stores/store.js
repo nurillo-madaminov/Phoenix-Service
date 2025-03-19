@@ -15,10 +15,11 @@ export const useProductsStore = defineStore('products', {
   actions: {
     async fetchProducts() {
       try {
+        this.loading = true
         const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/products/') ///all good with code 
         this.products = req.data
-        this.loading = true
         console.log(req.data);
+        this.loading = false
       } catch (err) {
         console.log('fetch products error : ', err)
       }

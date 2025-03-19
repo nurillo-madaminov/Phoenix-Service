@@ -45,7 +45,7 @@ onMounted(() => {
         </router-link>
       </div>
     </div> -->
-    <div class="container flex justify-center py-10" v-if="!loading">
+    <div class="container flex justify-center py-10" v-if="loading">
       <span class="loading loading-dots w-20"></span>
     </div>
     <div class="container" v-else>
@@ -55,16 +55,16 @@ onMounted(() => {
           v-for="product in products"
           :key="product.id"
         >
-          <div class="card bg-base-100 w-96 shadow-sm border relative overflow-hidden">
-            <figure>
+          <div class="card bg-base-100 w-96 h-[500px] flex justify-center  shadow-sm border relative overflow-hidden">
+            <figure class="rounded-none">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/63a38c1293202a2319aea5e2/1671730374768-ATL8O4IM71YWTEY63H1H/1.jpg"
+                :src="product.thumbnil"
                 alt="PT30"
               />
             </figure>
             <div class="card-body !text-center absolute w-full bottom-0">
               <h2 class="font-bold text-xl">{{ product.title }}</h2>
-              <p>{{ product.price }}</p>
+              <p>${{ product.price }}</p>
             </div>
           </div>
         </router-link>
