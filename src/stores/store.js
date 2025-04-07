@@ -73,11 +73,10 @@ export const useOrderFromStore = defineStore('orderProduct', {
       const product = this.getProductById(id);
       if (product){ product.amount += amount ; return }
 
-      
-      this.cartProduct.amount = amount.value
+
+      this.cartProduct.amount = amount;
       this.cartProduct.id = id
-      const product = userProduct(id);
-    
+
       this.cart.push({ ...this.cartProduct })
       // console.log('cart', this.cart)
     },

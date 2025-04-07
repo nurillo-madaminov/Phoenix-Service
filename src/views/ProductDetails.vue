@@ -17,7 +17,7 @@ const product = computed(() => {
 
 const createCartProduct = () => {
   if (count.value > 0) {
-    useCart.createOrUpdate(count, route.params.id)
+    useCart.createOrUpdate(count.value, route.params.id)
   } else {
     alert("Please enter amount")
   }
