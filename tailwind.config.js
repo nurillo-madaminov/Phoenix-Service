@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        cblack: '#1d1616',
+        'cblack': '#1d1616',
         'dark-red': '#8e1616',
         'light-red': '#d84040',
       },

@@ -57,8 +57,9 @@ export const usefetchPostsStore = defineStore('posts', {
 export const useOrderFromStore = defineStore('orderProduct', {
   state: () => ({
     cartProduct: {
-      amount: null,
       id: '',
+      amount: null,
+      price: null,
       product: null,
     },
     cart: [],
@@ -69,13 +70,34 @@ export const useOrderFromStore = defineStore('orderProduct', {
     },
   },
   actions: {
+    increaseAmount(id) {
+      console.log('increasing++ ', id)
+      this.getProductById(id).amount++
+    },
+    decreaseAmount(id) {
+      this.getProductById(id).amount--
+
+      if (this.getProductById(id).amount <= 0) {
+        this.cart = this.cart.filter((product) => product.id !== id)
+      }
+      console.log('decreasing-- ', id)
+    },
     createOrUpdate(amount, id) {
-      const product = this.getProductById(id);
-      if (product){ product.amount += amount ; return }
+      const product = this.getProductById(id)
+      if (product) {
+        product.amount += amount
+        return
+      }
+      const products = useProductsStore()
 
-
-      this.cartProduct.amount = amount;
       this.cartProduct.id = id
+      this.cartProduct.amount = amount
+      this.price = amount * products.getProductById(id).price
+      this.cartProduct.product = {
+        title: products.getProductById(id).title,
+        thumbnil: products.getProductById(id).thumbnil,
+        price: products.getProductById(id).price,
+      }
 
       this.cart.push({ ...this.cartProduct })
       // console.log('cart', this.cart)

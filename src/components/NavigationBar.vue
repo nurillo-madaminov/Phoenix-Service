@@ -6,7 +6,7 @@ const orderStore = useOrderFromStore()
 let scrolledDown = ref(false)
 
 const checkScroll = () => {
-  scrolledDown.value = window.scrollY >= 100
+  scrolledDown.value = window.scrollY >= 20
 }
 
 onMounted(() => {
