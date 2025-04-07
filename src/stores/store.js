@@ -59,6 +59,7 @@ export const useOrderFromStore = defineStore('orderProduct', {
     cartProduct: {
       amount: null,
       id: '',
+      product: null,
     },
     cart: [],
   }),
@@ -68,11 +69,16 @@ export const useOrderFromStore = defineStore('orderProduct', {
     },
   },
   actions: {
-    createPreOrderProduct(amount, id) {
+    createOrUpdate(amount, id) {
+      const product = this.getProductById(id);
+      if (product){ product.amount += amount ; return }
+
+      
       this.cartProduct.amount = amount.value
       this.cartProduct.id = id
+      const product = userProduct(id);
+    
       this.cart.push({ ...this.cartProduct })
-
       // console.log('cart', this.cart)
     },
   },
