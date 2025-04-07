@@ -1,17 +1,28 @@
 <script setup>
 import img from '@/assets/pics/services/image_2024-10-31_16-23-37_RLXauhf.png'
 import { useRoute, RouterLink } from 'vue-router'
-import { useProductsStore } from '@/stores/store'
+import { useProductsStore, useOrderFromStore } from '@/stores/store'
 import { onMounted, onUpdated, ref, computed } from 'vue'
 
 const route = useRoute()
 const useProducts = useProductsStore()
+const useCart = useOrderFromStore()
 //useProducts.getProductById(route.params.id).content
 // const product = ref()
+const count = ref(1)
+
 const product = computed(() => {
   return useProducts.getProductById(route.params.id)
 })
-const count = ref(0)
+
+const createCartProduct = () => {
+  if (count.value > 0) {
+    useCart.createPreOrderProduct(count, route.params.id)
+  } else {
+    alert("Please enter amount")
+  }
+  count.value = 1
+}
 
 onMounted(() => {
   if (useProducts.products.length == 0) {
@@ -20,8 +31,8 @@ onMounted(() => {
 })
 
 onUpdated(() => {
-  if (count.value < 0) {
-    count.value = 0
+  if (count.value < 1) {
+    count.value = 1
   }
 })
 </script>
@@ -67,6 +78,7 @@ onUpdated(() => {
                     </div>
                   </div>
                   <button
+                    @click="createCartProduct"
                     class="btn btn-neutral bg-light-red hover:bg-light-red active:bg-dark-red border-none text-white"
                   >
                     Add to cart

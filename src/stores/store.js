@@ -16,9 +16,9 @@ export const useProductsStore = defineStore('products', {
     async fetchProducts() {
       try {
         this.loading = true
-        const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/products/') ///all good with code
+        const req = await axios.get('https://phoenix.serveo.net/api/products/') ///all good with code
         this.products = req.data
-        console.log(req.data)
+        // console.log(req.data)
         this.loading = false
       } catch (err) {
         console.log('fetch products error : ', err)
@@ -36,20 +36,44 @@ export const usefetchPostsStore = defineStore('posts', {
   getters: {
     getPostById: (state) => (id) => {
       return state.posts.find((post) => post.id == id)
-    }
+    },
   },
   actions: {
     async fetchPosts() {
       try {
         this.loading = true
-        const req = await axios.get('https://052b-195-158-24-172.ngrok-free.app/api/blogs')
+        const req = await axios.get('https://phoenix.serveo.net/api/blogs')
         this.posts = req.data
-        console.log(req.data)
+        // console.log(req.data)
         this.loading = false
       } catch (err) {
         console.error('Error fetching data: 2 ', err)
         this.error = err
       }
+    },
+  },
+})
+
+export const useOrderFromStore = defineStore('orderProduct', {
+  state: () => ({
+    cartProduct: {
+      amount: null,
+      id: '',
+    },
+    cart: [],
+  }),
+  getters: {
+    getProductById: (state) => (id) => {
+      return state.cart.find((item) => item.id == id)
+    },
+  },
+  actions: {
+    createPreOrderProduct(amount, id) {
+      this.cartProduct.amount = amount.value
+      this.cartProduct.id = id
+      this.cart.push({ ...this.cartProduct })
+
+      // console.log('cart', this.cart)
     },
   },
 })
