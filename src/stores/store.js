@@ -60,59 +60,63 @@ export const useOrderFromStore = defineStore('orderProduct', {
       id: '',
       amount: null,
       price: null,
+      type: null,
+      typeLabel: null,
       product: null,
     },
     cart: [],
   }),
   getters: {
-    getProductById: (state) => (id) => {
-      return state.cart.find((item) => item.id == id)
+    getProductById: (state) => (id, type) => {
+      // return state.cart.find((item) => item.id == id)
+      return state.cart.find((item) => item.id === id && item.type === type)
     },
   },
   actions: {
-    increaseAmount(id) {
-      console.log('increasing++ ', id)
-      this.getProductById(id).amount++
-    },
-    decreaseAmount(id) {
-      this.getProductById(id).amount--
-
-      if (this.getProductById(id).amount <= 0) {
-        this.cart = this.cart.filter((product) => product.id !== id)
+    increaseAmount(id, type) {
+      const product = this.getProductById(id, type)
+      if (product) {
+        product.amount++
       }
-      console.log('decreasing-- ', id)
+      product.price = product.amount * product.product.price
     },
-    createOrUpdate(amount, id) {
-      const product = this.getProductById(id)
+
+    decreaseAmount(id, type) {
+      const product = this.getProductById(id, type)
+      if (product) {
+        product.amount--
+        product.price = product.amount * product.product.price
+        if (product.amount <= 0) {
+          this.cart = this.cart.filter((item) => !(item.id === id && item.type === type))
+        }
+      }
+    },
+
+    createOrUpdate(amount, id, type, typeLabel) {
+      const products = useProductsStore()
+      const product = this.getProductById(id, type)
+
       if (product) {
         product.amount += amount
+        product.price = product.amount * product.product.price
         return
       }
-      const products = useProductsStore()
 
       this.cartProduct.id = id
       this.cartProduct.amount = amount
-      this.price = amount * products.getProductById(id).price
+      this.cartProduct.type = type
+      this.cartProduct.typeLabel = typeLabel
       this.cartProduct.product = {
         title: products.getProductById(id).title,
         thumbnil: products.getProductById(id).thumbnil,
         price: products.getProductById(id).price,
       }
+      this.cartProduct.price = this.cartProduct.amount * products.getProductById(id).price
 
       this.cart.push({ ...this.cartProduct })
-      // console.log('cart', this.cart)
     },
   },
+  persist: true,
 })
 
-// const binID = '678c3a55e41b4d34e47a5b8d'
-// const XAccessKey = '$2a$10$x8BZ5T6mMEf7AAxKbEiqVufcon3S6eyGLpMxEFen5q9eb62WK08yW'
-
-// const response = await axios.get(`https://api.jsonbin.io/v3/b/${binID}`, {
-//   headers: {
-//     'X-Access-Key': XAccessKey,
-//   },
-// })
-// this.posts = response.data.record
-// posts.value = response.data.record
-// loading.value = false
+// amount * products.getProductById(id).price

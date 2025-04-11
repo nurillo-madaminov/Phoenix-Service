@@ -10,30 +10,40 @@ const useCart = useOrderFromStore()
 //useProducts.getProductById(route.params.id).content
 // const product = ref()
 const count = ref(1)
+const type = ref(null)
 
 const product = computed(() => {
   return useProducts.getProductById(route.params.id)
 })
 
+const hasType = computed(() => product.value?.types)
+
 const createCartProduct = () => {
-  if (count.value > 0) {
-    useCart.createOrUpdate(count.value, route.params.id)
+  if (hasType?.value?.types?.length && type.value == null) {
+    alert('select type')
   } else {
-    alert("Please enter amount")
+    const selectedType = hasType.value?.find((item) => item.name === type.value)
+    const typeLabel = selectedType?.label || null
+
+    useCart.createOrUpdate(count.value, route.params.id, type.value, typeLabel)
+
+    type.value = null
+    count.value = 1
   }
-  count.value = 1
 }
 
 onMounted(() => {
   if (useProducts.products.length == 0) {
     useProducts.fetchProducts()
   }
+  console.log(product)
 })
 
 onUpdated(() => {
   if (count.value < 1) {
     count.value = 1
   }
+  console.log(type.value)
 })
 </script>
 
@@ -60,13 +70,21 @@ onUpdated(() => {
                 <i class="fa-solid fa-chevron-right text-lg"></i>
                 <RouterLink to="#">{{ product?.title }}</RouterLink>
               </div>
-              <div class="text-justify col-span-5">
+              <div class="text-justify col-span-5 max-[1150px]:col-span-10">
                 <div class="w-[500px] h-[500px] border overflow-hidden">
                   <img :src="product?.thumbnil" :alt="product?.title" />
                 </div>
               </div>
-              <div class="text-justify col-span-5">
+              <div class="text-justify col-span-5 max-[1150px]:col-span-10 text-wrap">
                 <div v-html="product?.content"></div>
+                <div v-if="product?.types.length">
+                  <select class="p-5 rounded" v-model="type">
+                    <option :value="null">Select Type</option>
+                    <option v-for="type in product.types" :key="type.id" :value="type.name">
+                      {{ type.label }}
+                    </option>
+                  </select>
+                </div>
                 <div class="flex items-center gap-5 mt-10">
                   <div class="flex gap-3 border w-fit rounded-lg px-4 py-1">
                     <div class="min-w-10 flex justify-center items-center">

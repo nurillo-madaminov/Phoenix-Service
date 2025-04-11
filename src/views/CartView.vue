@@ -1,15 +1,18 @@
 <script setup>
 import router from '@/router'
 import { useOrderFromStore } from '@/stores/store'
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 const useCart = useOrderFromStore()
 const cartItems = computed(() => useCart.cart)
-// const totalPrice = computed(() => {
-//   cartItems.reduce((sum, item) = sum +price, 0)
-// })
 
-// console.log(totalPrice.value)
+const totalPrice = ref(0)
+
+watchEffect(() => {
+  cartItems.value.forEach((item) => {
+    totalPrice.value += item.price
+  })
+})
 </script>
 
 <template>
@@ -35,15 +38,26 @@ const cartItems = computed(() => useCart.cart)
           >
             <div class="flex items-center gap-5 flex-1">
               <img :src="cartItem.product.thumbnil" alt="" class="w-32" />
-              <h1 class="font-semibold">{{ cartItem.product.title }}</h1>
+              <div>
+                <h1 class="font-semibold">{{ cartItem.product.title }}</h1>
+                <p v-if="cartItem.type !== null" class="text-sm text-gray-600">
+                  {{ cartItem.typeLabel }}
+                </p>
+              </div>
             </div>
             <div class="flex justify-center items-center flex-1 gap-3">
-              <i class="fa-solid fa-minus" @click="useCart.decreaseAmount(cartItem.id)"></i>
+              <i
+                class="fa-solid fa-minus"
+                @click="useCart.decreaseAmount(cartItem.id, cartItem.type)"
+              ></i>
               <span class="min-w-10 text-center">{{ cartItem.amount }}</span>
-              <i class="fa-solid fa-plus" @click="useCart.increaseAmount(cartItem.id)"></i>
+              <i
+                class="fa-solid fa-plus"
+                @click="useCart.increaseAmount(cartItem.id, cartItem.type)"
+              ></i>
             </div>
             <div class="flex items-center flex-1 justify-end gap-3">
-              <span>{{ cartItem.product.price * cartItem.amount }}$</span>
+              <span>{{ cartItem.price.toFixed(2) }}$</span>
               <i class="fa-solid fa-xmark"></i>
             </div>
           </div>
@@ -51,7 +65,7 @@ const cartItems = computed(() => useCart.cart)
             <div class="mt-5">
               <div class="flex items-center justify-between">
                 <p class="text-lg">Subtotal</p>
-                <p class="text-xl font-semibold">$999.99</p>
+                <p class="text-xl font-semibold">${{ totalPrice.toFixed(2) }}</p>
               </div>
               <button
                 @click="router.push('/store')"
