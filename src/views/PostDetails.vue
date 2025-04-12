@@ -36,10 +36,10 @@ onMounted(() => {
         class="h-[40vh] flex justify-center items-center relative before:content-[''] before:w-full before:h-full before:absolute before:bg-gradient-to-r before:from-black before:to-[rgba(0,0,0,.5)]"
         ref="header"
       >
-        <h1 class="text-4xl font-bold text-white z-10">{{ post?.title }}</h1>
+        <h1 class="text-4xl font-bold text-white z-10 text-center max-[769px]:text-3xl max-[468px]:text-2xl">{{ post?.title }}</h1>
       </div>
       <div class="flex justify-center py-16">
-        <div class="max-w-[1000px]">
+        <div class="w-full max-w-[1000px] px-5">
           <div class="flex justify-between mb-8">
             <div
               class="w-12 h-12 flex justify-center items-center border-2 rounded-full active:outline active:outline-[gray]"

@@ -28,10 +28,10 @@ onMounted(() => {
         <h1 class="text-center text-5xl font-bold text-gray-400 py-10">¯\_(ツ)_/¯</h1>
         <p class="text-center text-xl font-semibold text-gray-400">No posts yet</p>
       </div>
-      <div class="grid grid-cols-3 gap-x-12 gap-y-5">
+      <div class="grid grid-cols-3 gap-x-12 gap-y-5 px-5 max-[1536px]:gap-x-5 max-[1024px]:grid-cols-2 max-[769px]:grid-cols-1">
         <div class="card bg-base-100 w-full shadow-xl border" v-for="post in posts" :key="post.id">
           <figure>
-            <img :src="post.thumbnail" :alt="post.thumbnail" class="h-[300px] w-full" />
+            <img :src="post.thumbnail" :alt="post.thumbnail" class="h-[300px] max-[1536px]:h-[250px] max-[769px]:h-auto w-full" />
           </figure>
           <div class="card-body">
             <h2 class="card-title">{{ post.title }}</h2>

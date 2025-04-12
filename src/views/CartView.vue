@@ -19,9 +19,9 @@ watchEffect(() => {
   <div class="h-32 bg-cblack"></div>
   <div class="flex justify-center">
     <div class="container py-28">
-      <h1 class="font-semibold text-2xl mb-4">Shopping Cart</h1>
+      <h1 class="font-semibold text-2xl mb-4 px-5">Shopping Cart</h1>
       <div>
-        <div v-if="cartItems.length == 0" class="min-h-[30vh]">
+        <div v-if="cartItems.length == 0" class="min-h-[30vh] px-5">
           <p class="mt-6">You have nothing in your shopping cart.</p>
           <button
             @click="router.push('/store')"
