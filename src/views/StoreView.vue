@@ -51,14 +51,16 @@ onMounted(() => {
       <span class="loading loading-dots w-20"></span>
     </div>
     <div class="container" v-else>
-      <div class="grid grid-cols-3 gap-y-10 px-20 place-items-center">
+      <div
+        class="grid grid-cols-3 gap-10 px-20 place-items-center max-[1280px]:grid-cols-2 max-[1024px]:gap-5 max-[1024px]:px-10 max-[769px]:grid-cols-1 max-[769px]:px-8"
+      >
         <router-link
           :to="{ name: 'ProductDetails', params: { id: product.id } }"
           v-for="product in products"
           :key="product.id"
         >
           <div
-            class="card bg-base-100 w-96 h-[500px] flex justify-center shadow-sm border relative overflow-hidden"
+            class="card bg-base-100 h-[500px] max-[1280px]:h-[480px] max-[1024px]:h-[400px] flex justify-center shadow-sm border relative overflow-hidden"
           >
             <figure class="rounded-none">
               <img :src="product.thumbnil" alt="PT30" />

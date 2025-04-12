@@ -64,43 +64,45 @@ onUpdated(() => {
       <div>
         <div class="flex justify-center">
           <div class="container flex justify-center pb-16">
-            <div class="max-w-[1200px] grid grid-cols-10 gap-20">
-              <div class="col-span-10 flex items-center gap-3 text-xl mt-10">
+            <div class="max-w-[1200px]">
+              <div class="flex items-center gap-3 text-xl my-10 px-5">
                 <RouterLink :to="{ name: 'store' }">Store</RouterLink>
                 <i class="fa-solid fa-chevron-right text-lg"></i>
                 <RouterLink to="#">{{ product?.title }}</RouterLink>
               </div>
-              <div class="text-justify col-span-5 max-[1150px]:col-span-10">
-                <div class="w-[500px] h-[500px] border overflow-hidden">
-                  <img :src="product?.thumbnil" :alt="product?.title" />
-                </div>
-              </div>
-              <div class="text-justify col-span-5 max-[1150px]:col-span-10 text-wrap">
-                <div v-html="product?.content"></div>
-                <div v-if="product?.types.length">
-                  <select class="p-5 rounded" v-model="type">
-                    <option :value="null">Select Type</option>
-                    <option v-for="type in product.types" :key="type.id" :value="type.name">
-                      {{ type.label }}
-                    </option>
-                  </select>
-                </div>
-                <div class="flex items-center gap-5 mt-10">
-                  <div class="flex gap-3 border w-fit rounded-lg px-4 py-1">
-                    <div class="min-w-10 flex justify-center items-center">
-                      <h1 class="text-lg">{{ count }}</h1>
-                    </div>
-                    <div class="flex flex-col">
-                      <i class="fa-solid fa-chevron-up px-2 py-1" @click="count++"></i>
-                      <i class="fa-solid fa-chevron-down px-2 py-1" @click="count--"></i>
-                    </div>
+              <div class="grid grid-cols-2 max-[1050px]:grid-cols-1">
+                <div class="text-justify px-5 pt-5">
+                  <div class="max-w-[500px] border overflow-hidden">
+                    <img :src="product?.thumbnil" :alt="product?.title" />
                   </div>
-                  <button
-                    @click="createCartProduct"
-                    class="btn btn-neutral bg-light-red hover:bg-light-red active:bg-dark-red border-none text-white"
-                  >
-                    Add to cart
-                  </button>
+                </div>
+                <div class="text-justify px-5">
+                  <div v-html="product?.content"></div>
+                  <div v-if="product?.types.length" >
+                    <select class="p-5 rounded w-full" v-model="type">
+                      <option :value="null">Select Type</option>
+                      <option v-for="type in product.types" :key="type.id" :value="type.name">
+                        {{ type.label }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-5 mt-10">
+                    <div class="flex gap-3 border w-fit rounded-lg px-4 py-1">
+                      <div class="min-w-10 flex justify-center items-center">
+                        <h1 class="text-lg">{{ count }}</h1>
+                      </div>
+                      <div class="flex flex-col">
+                        <i class="fa-solid fa-chevron-up px-2 py-1" @click="count++"></i>
+                        <i class="fa-solid fa-chevron-down px-2 py-1" @click="count--"></i>
+                      </div>
+                    </div>
+                    <button
+                      @click="createCartProduct"
+                      class="btn btn-neutral bg-light-red hover:bg-light-red active:bg-dark-red border-none text-white"
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
