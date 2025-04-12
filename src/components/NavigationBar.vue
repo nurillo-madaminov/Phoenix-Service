@@ -1,5 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useOrderFromStore } from '@/stores/store'
+const orderStore = useOrderFromStore()
 
 let scrolledDown = ref(false)
 
@@ -10,6 +12,9 @@ const checkScroll = () => {
 onMounted(() => {
   window.addEventListener('scroll', checkScroll)
 })
+
+// window.onload = () => innerWidth.value = window.innerWidth
+// window.onresize = () => innerWidth.value = window.innerWidth
 
 onUnmounted(() => {
   window.removeEventListener('scroll')
@@ -111,11 +116,7 @@ onUnmounted(() => {
         </ul>
       </div>
       <div class="navbar-end">
-        <router-link
-          :to="{ name: 'cart' }"
-          class="p-3 relative before:absolute before:w-2 before:h-2 before:bg-light-red before:rounded-full before:right-2 before:top-3"
-          ><i class="fa-solid fa-cart-shopping"></i
-        ></router-link>
+        <router-link :to="{ name: 'cart' }" :class="{'before:hidden': !orderStore.cart.length}"  class="p-3 relative before:absolute before:w-2 before:h-2 before:bg-light-red before:rounded-full before:right-2 before:top-3"><i class="fa-solid fa-cart-shopping"></i></router-link>
         <a href="tel:#" class="btn btn-ghost hover:bg-transparent hidden md:flex"
           >+1 216 293 50 50</a
         >
