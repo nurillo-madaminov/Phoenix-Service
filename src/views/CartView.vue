@@ -9,6 +9,7 @@ const cartItems = computed(() => useCart.cart)
 const totalPrice = ref(0)
 
 watchEffect(() => {
+  totalPrice.value = 0 // ✅ reset first
   cartItems.value.forEach((item) => {
     totalPrice.value += item.price
   })

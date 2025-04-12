@@ -17,7 +17,7 @@ export const useProductsStore = defineStore('products', {
     async fetchProducts() {
       try {
         this.loading = true
-        const req = await axios.get('https://phoenix.serveo.net/api/products/') ///all good with code
+        const req = await axios.get('https://phoenix.serveo.net/api/products/')  
         this.products = req.data
         this.loading = false
       } catch (err) {
@@ -68,7 +68,6 @@ export const useOrderFromStore = defineStore('orderProduct', {
   }),
   getters: {
     getProductById: (state) => (id, type) => {
-      // return state.cart.find((item) => item.id == id)
       return state.cart.find((item) => item.id === id && item.type === type)
     },
   },
@@ -79,6 +78,7 @@ export const useOrderFromStore = defineStore('orderProduct', {
         product.amount++
       }
       product.price = product.amount * product.product.price
+      console.log(product)
     },
 
     decreaseAmount(id, type) {
@@ -86,6 +86,7 @@ export const useOrderFromStore = defineStore('orderProduct', {
       if (product) {
         product.amount--
         product.price = product.amount * product.product.price
+        console.log(product)
         if (product.amount <= 0) {
           this.cart = this.cart.filter((item) => !(item.id === id && item.type === type))
         }
@@ -119,4 +120,3 @@ export const useOrderFromStore = defineStore('orderProduct', {
   persist: true,
 })
 
-// amount * products.getProductById(id).price

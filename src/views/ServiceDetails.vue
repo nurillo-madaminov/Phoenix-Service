@@ -23,7 +23,7 @@ const filteredService = services.find((item) => item.id == route.params.id)
       </div>
     </div>
     <div class="flex justify-center py-16">
-      <div class="container space-y-5">
+      <div class="container space-y-5 px-5">
         <div
           class="collapse collapse-arrow bg-base-200 max-w-[1000px] m-auto"
           v-for="filteredService in filteredService.levels"
@@ -32,7 +32,7 @@ const filteredService = services.find((item) => item.id == route.params.id)
           <input type="checkbox" name="my-accordion-2" />
           <div class="collapse-title text-xl font-medium flex justify-between py-5">
             <div>
-              <h1 class="text-[28px] font-semibold">{{ filteredService.title }}</h1>
+              <h1 class="text-[28px] font-semibold max-[600px]:text-2xl">{{ filteredService.title }}</h1>
               <p class="text-sm mt-4 text-gray-500 font-normal">{{ filteredService.status }}</p>
             </div>
             <div class="flex flex-col gap-3">
