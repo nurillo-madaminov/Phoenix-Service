@@ -8,6 +8,7 @@ import { useProductsStore } from '@/stores/store'
 const useProducts = useProductsStore()
 const products = computed(() => useProducts.products)
 const loading = computed(() => useProducts.loading)
+const serverError = computed(() => useProducts.serverError)
 
 onMounted(() => {
   if (useProducts.products.length == 0) {
@@ -50,6 +51,16 @@ onMounted(() => {
     <div class="container flex justify-center py-10" v-if="loading">
       <span class="loading loading-dots w-20"></span>
     </div>
+    <div class="container flex justify-center flex-col items-center py-10" v-else-if="serverError">
+      <h1 class="text-[150px] tracking-widest font-bold leading-none">500</h1>
+      <p class="text-2xl">Internal server error! Try again later, it will be fixed soon...</p>
+      <p class="mt-5">
+        Click
+        <router-link :to="{ name: 'home' }" class="underline text-blue-600">here</router-link> to
+        return to the home page.
+      </p>
+    </div>
+
     <div class="container" v-else>
       <div
         class="grid grid-cols-3 gap-10 px-20 place-items-center max-[1280px]:grid-cols-2 max-[1024px]:gap-5 max-[1024px]:px-10 max-[769px]:grid-cols-1 max-[769px]:px-8"

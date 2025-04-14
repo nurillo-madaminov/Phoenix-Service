@@ -6,7 +6,7 @@ export const useProductsStore = defineStore('products', {
   state: () => ({
     products: [],
     loading: false,
-    serverError: false, //Will be used to display server error
+    serverError: false,
   }),
   getters: {
     getProductById: (state) => (id) => {
@@ -17,12 +17,13 @@ export const useProductsStore = defineStore('products', {
     async fetchProducts() {
       try {
         this.loading = true
-        const req = await axios.get('https://phoenix.serveo.net/api/products/')  
+        const req = await axios.get('https://phoenix.serveo.net/api/products/')
         this.products = req.data
         this.loading = false
       } catch (err) {
         this.loading = false
-        console.log('fetch products error : ', err)
+        this.serverError = true
+        return err
       }
     },
   },
@@ -48,7 +49,8 @@ export const usefetchPostsStore = defineStore('posts', {
         this.loading = false
       } catch (err) {
         this.loading = false
-        console.error('Error fetching data: 2 ', err)
+        this.serverError = true
+        return err
       }
     },
   },
@@ -119,4 +121,3 @@ export const useOrderFromStore = defineStore('orderProduct', {
   },
   persist: true,
 })
-

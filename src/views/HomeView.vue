@@ -31,7 +31,7 @@ function animateText() {
       if (offsetTop.value == -280) {
         offsetTop.value = 0
       }
-    }, 1000)
+    }, 2000)
   }
 }
 
