@@ -10,6 +10,7 @@ import StoreView from '@/views/StoreView.vue'
 import ProductDetails from '@/views/ProductDetails.vue'
 import CartView from '@/views/CartView.vue'
 import NotFound from '@/views/NotFound.vue'
+import CheckOut from '@/views/CheckOut.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +64,11 @@ const router = createRouter({
       path: '/cart',
       name: 'cart',
       component: CartView,
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: CheckOut,
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],

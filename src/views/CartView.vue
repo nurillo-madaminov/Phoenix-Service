@@ -59,7 +59,10 @@ watchEffect(() => {
             </div>
             <div class="flex items-center flex-1 justify-end gap-3">
               <span>{{ cartItem.price.toFixed(2) }}$</span>
-              <i class="fa-solid fa-xmark"></i>
+              <i
+                class="fa-solid fa-xmark"
+                @click="useCart.removeProduct(cartItem.id, cartItem.type)"
+              ></i>
             </div>
           </div>
           <div class="flex justify-end">
@@ -69,7 +72,7 @@ watchEffect(() => {
                 <p class="text-xl font-semibold">${{ totalPrice.toFixed(2) }}</p>
               </div>
               <button
-                @click="router.push('/store')"
+                @click="router.push('/checkout')"
                 class="bg-light-red text-white py-4 px-16 mt-5 rounded-2 text-lg mt inline-block hover:bg-red-500 duration-200 rounded"
               >
                 Checkout
@@ -77,8 +80,6 @@ watchEffect(() => {
             </div>
           </div>
         </div>
-
-        <!-- <div v-for="cartItem in cartItems" :key="cartItem.id" ></div> -->
       </div>
     </div>
   </div>

@@ -94,6 +94,12 @@ export const useOrderFromStore = defineStore('orderProduct', {
         }
       }
     },
+    removeProduct(id, type) {
+      const product = this.getProductById(id, type)
+      if (product) {
+        this.cart = this.cart.filter((item) => !(item.id === id && item.type === type))
+      }
+    },
 
     createOrUpdate(amount, id, type, typeLabel) {
       const products = useProductsStore()
